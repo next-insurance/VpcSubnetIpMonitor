@@ -28,7 +28,6 @@ No modules.
 | [aws_lambda_permission.allow_cloudwatch_to_call_monitoring_lambda](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_permission) | resource |
 | [null_resource.npm_install](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [archive_file.lambda_zip](https://registry.terraform.io/providers/hashicorp/archive/latest/docs/data-sources/file) | data source |
-| [aws_iam_policy.AWSLambdaBasicExecutionRole](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/iam_policy) | data source |
 | [null_data_source.wait_for_npm_install](https://registry.terraform.io/providers/hashicorp/null/latest/docs/data-sources/data_source) | data source |
 
 ## Inputs
@@ -39,6 +38,7 @@ No modules.
 | <a name="input_lambda_execution_role_name"></a> [lambda\_execution\_role\_name](#input\_lambda\_execution\_role\_name) | The IAM role name for the lambda execution permissions | `string` | `"VpcSubnetIpMonitorRole"` | no |
 | <a name="input_lambda_function_name"></a> [lambda\_function\_name](#input\_lambda\_function\_name) | The function name for the created lambda | `string` | `"VpcSubnetIpMonitorFunction"` | no |
 | <a name="input_lambda_invocation_rate_minutes"></a> [lambda\_invocation\_rate\_minutes](#input\_lambda\_invocation\_rate\_minutes) | Fire the lambda every X minutes | `number` | `5` | no |
+| <a name="input_lambda_invocation_timeout"></a> [lambda\_invocation\_timeout](#input\_lambda\_invocation\_timeout) | The timeout parameter for the lambda invocation | `number` | `5` | no |
 
 ## Outputs
 
