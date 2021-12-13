@@ -21,3 +21,8 @@ variable "lambda_execution_role_name" {
   default     = "VpcSubnetIpMonitorRole"
   description = "The IAM role name for the lambda execution permissions"
 }
+variable "lambda_invocation_timeout" {
+  type        = number
+  description = "The timeout parameter for the lambda invocation"
+  default     = 5
+}

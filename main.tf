@@ -9,7 +9,7 @@ resource "null_resource" "npm_install" {
 
 data "null_data_source" "wait_for_npm_install" {
   inputs = {
-    lambda_dependency_id = "${null_resource.npm_install.id}"
+    lambda_dependency_id = null_resource.npm_install.id
     source_dir           = "${path.module}/VpcSubnetIpMonitor/"
   }
 }
@@ -27,7 +27,7 @@ resource "aws_lambda_function" "monitoring_lambda" {
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
   runtime          = "nodejs14.x"
   memory_size      = 128
-  timeout          = 5
+  timeout          = var.lambda_invocation_timeout
 }
 
 
@@ -75,11 +75,7 @@ resource "aws_iam_role_policy_attachment" "monitoring_lambda_role_to_vpc_subnet_
 
 resource "aws_iam_role_policy_attachment" "monitoring_lambda_role_to_aws_basic_lambda_execution_attachment" {
   role       = aws_iam_role.monitoring_lambda_role.name
-  policy_arn = data.aws_iam_policy.AWSLambdaBasicExecutionRole.arn
-}
-
-data "aws_iam_policy" "AWSLambdaBasicExecutionRole" {
-  arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
 }
 
 resource "aws_iam_role" "monitoring_lambda_role" {
